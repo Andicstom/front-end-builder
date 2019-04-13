@@ -1,28 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    let childNodes;
+    if (this.props.node.childNodes != null) {
+      childNodes = this.props.node.childNodes.map(function(node, index) {
+        console.log(node.type + " " + index);
+        let plusStyle = node.style || divStyle;
+        let value = node.value || "";
+        switch(node.type) {
+          case 'div':
+            return <div style={plusStyle} key={index}><App node={node} /></div>
+          case 'p':
+            return <p style={pStyle} key={index}>{value}<App node={node} /></p>
+          default: 
+            return <App node={node} />;
+        }
+      });
+    }
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <React.Fragment>
+        {childNodes}
+      </React.Fragment>
     );
   }
 }
+
+const divStyle = {
+  padding: '40px',
+  border: '5px solid pink'
+};
+
+const pStyle = {
+  padding: '10px',
+  border: '5px solid blue'
+};
 
 export default App;
