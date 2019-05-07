@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Tools = ({ toolsSections }) => {
+const Tools = ({ toolsSections, selectedNode }) => {
+    console.log(selectedNode)
     return (
         <div className="conatiner">
             <div className="row">
