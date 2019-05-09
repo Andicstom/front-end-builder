@@ -1,13 +1,13 @@
 {
-  "main.css": "/Andicstom/Andicstom.github.io/home/static/css/main.c22ff9d7.chunk.css",
-  "main.js": "/Andicstom/Andicstom.github.io/home/static/js/main.40dfd540.chunk.js",
-  "main.js.map": "/Andicstom/Andicstom.github.io/home/static/js/main.40dfd540.chunk.js.map",
-  "runtime~main.js": "/Andicstom/Andicstom.github.io/home/static/js/runtime~main.d093526d.js",
-  "runtime~main.js.map": "/Andicstom/Andicstom.github.io/home/static/js/runtime~main.d093526d.js.map",
-  "static/js/2.30d7af93.chunk.js": "/Andicstom/Andicstom.github.io/home/static/js/2.30d7af93.chunk.js",
-  "static/js/2.30d7af93.chunk.js.map": "/Andicstom/Andicstom.github.io/home/static/js/2.30d7af93.chunk.js.map",
-  "index.html": "/Andicstom/Andicstom.github.io/home/index.html",
-  "precache-manifest.5cf79aba6d9b026251e24ba161411212.js": "/Andicstom/Andicstom.github.io/home/precache-manifest.5cf79aba6d9b026251e24ba161411212.js",
-  "service-worker.js": "/Andicstom/Andicstom.github.io/home/service-worker.js",
-  "static/css/main.c22ff9d7.chunk.css.map": "/Andicstom/Andicstom.github.io/home/static/css/main.c22ff9d7.chunk.css.map"
+  "main.css": "/front-end-builder-github-pages/static/css/main.c22ff9d7.chunk.css",
+  "main.js": "/front-end-builder-github-pages/static/js/main.1b360658.chunk.js",
+  "main.js.map": "/front-end-builder-github-pages/static/js/main.1b360658.chunk.js.map",
+  "runtime~main.js": "/front-end-builder-github-pages/static/js/runtime~main.fd53ac86.js",
+  "runtime~main.js.map": "/front-end-builder-github-pages/static/js/runtime~main.fd53ac86.js.map",
+  "static/js/2.30d7af93.chunk.js": "/front-end-builder-github-pages/static/js/2.30d7af93.chunk.js",
+  "static/js/2.30d7af93.chunk.js.map": "/front-end-builder-github-pages/static/js/2.30d7af93.chunk.js.map",
+  "index.html": "/front-end-builder-github-pages/index.html",
+  "precache-manifest.d287822edb4bedd1fc2e092b0f2a2cca.js": "/front-end-builder-github-pages/precache-manifest.d287822edb4bedd1fc2e092b0f2a2cca.js",
+  "service-worker.js": "/front-end-builder-github-pages/service-worker.js",
+  "static/css/main.c22ff9d7.chunk.css.map": "/front-end-builder-github-pages/static/css/main.c22ff9d7.chunk.css.map"
 }
