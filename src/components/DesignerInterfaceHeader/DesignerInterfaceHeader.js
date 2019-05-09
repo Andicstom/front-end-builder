@@ -33,19 +33,21 @@ function trimText(text) {
 }
 
 function getStandarBeforeText() {
-    /*let text = '<!DOCTYPE html>\n' +
+    let text = 
+    '<!DOCTYPE html>\n' +
     '<html> \n' +
     '<head> \n' +
     '<title>Page Title</title>\n' +
-    '</head>\n'*/
-
-    let text = '<html><head><title>Page Title</title></head><body>'
+    '</head> \n' + 
+    '<body> \n' 
 
     return text
 }
 
 function getStandarAfterText() {
-    let text = '</html>'
+    let text = 
+    '</body> \n' +
+    '</html>'
     return text
 }
 

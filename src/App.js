@@ -6,8 +6,10 @@ import ToolsHtmlTags from './components/ToolsHtmlTags/ToolsHtmlTags'
 import DesignerInterfaceHeader from './components/DesignerInterfaceHeader/DesignerInterfaceHeader'
 import Preview from './components/Preview/Preview'
 import SelectElem from './components/SelectElem/SelectElem'
+import { saveAs } from 'file-saver';
 import ToolsSelectElemBox from './components/ToolsSelectElemBox/ToolsSelectElemBox'
 var TreeModel = require('tree-model')
+var FileSaver = require('file-saver');
 
 class App extends Component {
     constructor(props) {
@@ -198,10 +200,12 @@ class App extends Component {
                 )
             })
         }
-        console.log(children)
         return children
     }
 
+    // Css fájl összeállítása
+    // Az elem ID-ja alapján rendeli hozzá a stílust
+    // Fejlesztési lehetőségekről a szakdolgozatomban részletesen beszéltem
     getCssFileText = () => {
         let text = ''
         let row = ''
@@ -227,9 +231,13 @@ class App extends Component {
             .join('')
     }
 
+    // Fájlok letöltése
+    // Ehhez FileServer.js használtam
     downloadFiles = (htmlText, cssText) => {
-        this.downloadFile('html', htmlText)
-        this.downloadFile('css', cssText)
+        var htmlBlob = new Blob([htmlText], {type: "text/plain;charset=utf-8"});
+        FileSaver.saveAs(htmlBlob, "index.html");
+        var cssBlob = new Blob([cssText], {type: "text/plain;charset=utf-8"});
+        FileSaver.saveAs(cssBlob, "index.css");
     }
 
     render() {
