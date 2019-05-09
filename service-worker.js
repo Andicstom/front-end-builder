@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Andicstom/Andicstom.github.io/precache-manifest.c2a6a06843f5555a1688d7d78a5b9e5f.js"
+  "/Andicstom/Andicstom.github.io/home/precache-manifest.5cf79aba6d9b026251e24ba161411212.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/Andicstom/Andicstom.github.io/index.html", {
+workbox.routing.registerNavigationRoute("/Andicstom/Andicstom.github.io/home/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
