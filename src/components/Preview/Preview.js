@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// Ebben a komponensben történik az összeálított oldal-szerkezet megjelenítése
+// Ez rekurzív módszerrel történik, így a komponens többször is meghívja saját magát
+// Ezzel kirajzolva a megfelelő oldal-szerkezetet
 const Preview = ({ node }) => {
     let children
     if (node.children != null) {
@@ -27,6 +30,7 @@ const Preview = ({ node }) => {
     return <React.Fragment>{children}</React.Fragment>
 }
 
+// Paraméter validálása és meghatározása
 Preview.propTypes = {
     node: PropTypes.object.isRequired
 }

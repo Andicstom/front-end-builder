@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// Ebben a komponensben történik az összeálított HTML DOM vázának megjelenítése
+// Ez rekurzív módszerrel történik, így a komponens többször is meghívja saját magát
+// Ezzel kirajzolva a HTML DOM megfelelő vázát
 const SelectElem = ({ node, selectElem, selectedNode }) => {
     let children
     if (node.children != null) {

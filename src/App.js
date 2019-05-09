@@ -15,6 +15,8 @@ class App extends Component {
 
         this.tree = new TreeModel()
 
+        // HTML DOM-ot tároló frastruktúra
+        // root div elemmel
         this.state = {
             root: this.tree.parse({
                 id: 'html dom tree',
@@ -25,71 +27,7 @@ class App extends Component {
                         type: 'div',
                         attributes: { id: 'root' },
                         styles: {},
-                        children: [
-                            /*{
-                        id: 11,
-                        type: 'div',
-                        attributes: {},
-                        styles: {},
-                        children: [
-                            {
-                                id: 111,
-                                type: 'p',
-                                attributes: {},
-                                styles: {}
-                            }
-                        ]
-                    },
-                    {
-                        id: 12,
-                        type: 'div',
-                        attributes: {},
-                        styles: {},
-                        children: [
-                            {
-                                id: 121,
-                                type: 'h1',
-                                attributes: {},
-                                styles: {}
-                            },
-                            {
-                                id: 122,
-                                type: 'h2',
-                                attributes: {},
-                                styles: {}
-                            },
-                            {
-                                id: 123,
-                                type: 'div',
-                                attributes: {},
-                                styles: {},
-                                children: [
-                                    {
-                                        id: 1231,
-                                        type: 'p',
-                                        attributes: {},
-                                        styles: {}
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        id: 13,
-                        type: 'div',
-                        attributes: {},
-                        styles: {
-                            border: '5px solid blue',
-                            padding: '5px'
-                        }
-                    },
-                    {
-                        id: 14,
-                        type: 'p',
-                        attributes: { href: 'pornhub.com' },
-                        styles: { border: '5px solid red' }
-                    }*/
-                        ]
+                        children: []
                     }
                 ]
             }),
@@ -97,23 +35,26 @@ class App extends Component {
         }
     }
 
-    getStyle = () => {
-        return { padding: '40px', border: '2px solid blue' }
+    componentWillMount() {
+        let bodyStyle = document.body.style
+        //document.html.style.height = '100%'
+        //bodyStyle.backgroundColor = 'green'
+        //bodyStyle.height = '100%'
     }
 
-    getSelectedStyle = () => {
-        return { padding: '40px', border: '2px solid red' }
+    componentWillUnmount() {
+        document.body.style.backgroundColor = null
     }
 
+    // Elem kiválasztása és ez alapján az alkalmazás állapotának frissítése
     selectElem = (e, node) => {
         if (!e) var e = window.event
         e.cancelBubble = true
         if (e.stopPropagation) e.stopPropagation()
-        console.log(this.state.selectedNodeId)
         this.setState({ selectedNodeId: node.model.id })
-        console.log('selected node: ' + this.state.selectedNodeId)
     }
 
+    // Új elem hozzáadása az adatmodellhez
     addNewElem = (elemType, addType) => {
         let newNode = this.tree.parse({
             id: 11111,
@@ -125,7 +66,6 @@ class App extends Component {
 
         if (this.state.selectedNodeId != null) {
             let newRoot = this.state.root
-            console.log('selected node id: ' + this.state.selectedNodeId)
             let parentNode = newRoot.first(function(node) {
                 return node.model.id === selectedNode
             })
@@ -142,19 +82,18 @@ class App extends Component {
                         parentNode.addChild(newNode)
                         break
                 }
-                console.log(parentNode)
-                console.log(newRoot)
+
                 this.setState({ root: newRoot })
             }
         }
     }
 
+    // Kiválasztott elem attribútumainak módosítása
     modifyAttribute = attributes => {
         let selectedNodeId = this.state.selectedNodeId
 
         if (this.state.selectedNodeId != null) {
             let newRoot = this.state.root
-            console.log('selected node id: ' + this.state.selectedNodeId)
             let selectedNode = newRoot.first(function(node) {
                 return node.model.id === selectedNodeId
             })
@@ -163,17 +102,16 @@ class App extends Component {
                 selectedNode.model.id = attributes.id
                 selectedNode.model.attributes = attributes
                 this.setState({ root: newRoot })
-                console.log(this.state)
             }
         }
     }
 
+    // Kiválasztott elem stílusának módosítása
     modifyStyles = styles => {
         let selectedNodeId = this.state.selectedNodeId
 
         if (this.state.selectedNodeId != null) {
             let newRoot = this.state.root
-            console.log('selected node id: ' + this.state.selectedNodeId)
             let selectedNode = newRoot.first(function(node) {
                 return node.model.id === selectedNodeId
             })
@@ -181,11 +119,11 @@ class App extends Component {
             if (selectedNode != null) {
                 selectedNode.model.styles = styles
                 this.setState({ root: newRoot })
-                console.log(this.state)
             }
         }
     }
 
+    // Kiválasztott elem törlése az adatmodellből
     deletSelectedElem = () => {
         let selectedNode = this.state.selectedNodeId
 
@@ -203,6 +141,7 @@ class App extends Component {
         }
     }
 
+    // A kiválasztott elem attribútumainak lekérése
     getSelectedElemAttributes = () => {
         let selectedNodeId = this.state.selectedNodeId
         if (this.state.selectedNodeId != null) {
@@ -217,6 +156,7 @@ class App extends Component {
         return {}
     }
 
+    // A kiválasztott elem stílusának lekérése
     getSelectedElemStyle = () => {
         let selectedNodeId = this.state.selectedNodeId
 
@@ -239,12 +179,9 @@ class App extends Component {
             'data:text/plain;charset=utf-8,' + encodeURIComponent(text)
         )
         element.setAttribute('download', filename)
-
         element.style.display = 'none'
         document.body.appendChild(element)
-
         element.click()
-
         document.body.removeChild(element)
     }
 
@@ -274,7 +211,7 @@ class App extends Component {
             if (node.model.id === 'html dom tree') {
                 row = ''
             } else {
-              id = node.model.attributes.id || node.model.id
+                id = node.model.attributes.id || node.model.id
                 styles = JSON.stringify(node.model.styles)
                     .replace('{', '')
                     .replace('}', '')
@@ -282,7 +219,7 @@ class App extends Component {
             }
             text += row
         })
-        
+
         return text
             .split(',')
             .join('; ')
@@ -291,56 +228,12 @@ class App extends Component {
     }
 
     downloadFiles = (htmlText, cssText) => {
-      this.downloadFile('html', htmlText)
-      this.downloadFile('css', cssText)
-  }
+        this.downloadFile('html', htmlText)
+        this.downloadFile('css', cssText)
+    }
 
     render() {
-        const selectedStyle = {
-            padding: '40px',
-            border: '2px solid red'
-        }
-
-        const simpleStyle = {
-            padding: '40px',
-            border: '2px solid blue'
-        }
-
-        /*const attributeOptions = [
-            { key: 'id', value: 'id' },
-            { key: 'href', value: 'href' },
-            { key: 'type', value: 'type' },
-            { key: 'class', value: 'class' }
-        ]
-
-        const addTagOptions = [
-            { key: 'append', value: 'append' },
-            { key: 'preppend', value: 'preppend' },
-            { key: 'after', value: 'after' },
-            { key: 'befor', value: 'before' }
-        ]
-
-        const styleOptions = [
-            { key: 'color', value: 'color' },
-            { key: 'border', value: 'border' },
-            { key: 'margin', value: 'margin' },
-            { key: 'padding', value: 'padding' }
-        ]*/
-
-        /*const tagOptions = [
-            { key: 'div', value: 'div' },
-            { key: 'p', value: 'p' },
-            { key: 'h1', value: 'h1' },
-            { key: 'h1', value: 'h1' },
-            { key: 'input', value: 'input' },
-            { key: 'input', value: 'input' },
-            { key: 'input', value: 'input' },
-            { key: 'input', value: 'input' },
-            { key: 'input', value: 'input' },
-            { key: 'input', value: 'input' },
-            { key: 'input', value: 'input' },
-        ]*/
-
+        // Az alkalmazásban megtalálhatő HTML elemek
         const tagOptions = [
             'div',
             'p',
@@ -402,6 +295,7 @@ class App extends Component {
             'ul'
         ]
 
+        // Az alkalmazásban megtalálható stílus elemek
         const styleOptions = [
             'align-content',
             'align-items',
@@ -452,20 +346,191 @@ class App extends Component {
             'font-style',
             'font-variant',
             'font-weight',
-            'padding',
+            'grid',
+            'grid-area',
+            'grid-auto-columns',
+            'grid-auto-flow',
+            'grid-auto-rows',
+            'grid-column',
+            'grid-column-end',
+            'grid-column-gap',
+            'grid-column-start',
+            'grid-gap',
+            'grid-row',
+            'grid-row-end',
+            'grid-row-gap',
+            'grid-row-start',
+            'grid-template',
+            'grid-template-areas',
+            'grid-template-columns',
+            'grid-template-rows',
+            'height',
+            'justify-content',
+            'left',
+            'letter-spacing',
+            'line-break',
+            'line-height',
+            'line-style',
+            'list-style',
+            'list-style-image',
+            'list-style-position',
+            'list-style-type',
             'margin',
+            'max-height',
+            'max-width',
+            'min-height',
+            'min-width',
+            'mix-blend-mode',
+            'object-fit',
+            'object-position',
+            'opacity',
+            'order',
+            'outline',
+            'outline-offset',
+            'overflow',
+            'overflow-wrap',
+            'overflow-x',
+            'overflow-y',
+            'padding',
+            'position',
+            'quotes',
+            'resize',
+            'right',
+            'tab-size',
+            'table-layout',
+            'text-align',
+            'text-decoration',
+            'text-decoration-color',
+            'text-indent',
+            'text-justify',
+            'text-overflow',
+            'text-shadow',
+            'top',
+            'transition',
+            'vertical-align',
+            'visibility',
+            'width',
+            'word-break',
+            'word-spacing',
+            'word-wrap',
+            'writing-mode',
+            'z-index'
+        ]
+
+        // Az alkalmazásban megtalálható hozzáadási módszerek
+        const addTagOptions = ['append', 'prepend']
+
+        // Az alkalmazásban megtalálható attribútum elemek
+        const attributeOptions = [
+            'accept',
+            'accept-charset',
+            'accesskey',
+            'action',
+            'align',
+            'alt',
+            'async',
+            'autocomplete',
+            'autofocus',
+            'autoplay',
+            'bgcolor',
+            'border',
+            'checked',
+            'cite',
+            'class',
+            'color',
+            'cols',
+            'colspan',
+            'content',
+            'contenteditable',
+            'controls',
+            'coords',
+            'data',
+            'datetime',
+            'default',
+            'dir',
+            'dirname',
+            'disabled',
+            'download',
+            'draggable',
+            'dropzone',
+            'enctype',
+            'for',
+            'form',
+            'formaction',
+            'headers',
+            'height',
+            'hidden',
+            'high',
+            'hreflang',
+            'id',
+            'ismap',
+            'kind',
+            'label',
+            'lang',
+            'list',
+            'loop',
+            'low',
+            'max',
+            'maxlength',
+            'media',
+            'method',
+            'min',
+            'multiple',
+            'muted',
+            'name',
+            'novalidate',
+            'onabort',
+            'onblur',
+            'oncanplay',
+            'onchange',
+            'onclick',
+            'oncontextmenu',
+            'oncopy',
+            'ondblclick',
+            'ondrag',
+            'ondragenter',
+            'ondragleave',
+            'ondragover',
+            'ondragstart',
+            'ondrop',
+            'ondurationchange',
+            'onended',
+            'onerror',
+            'onfocus',
+            'oninput',
+            'oninvalid',
+            'onkeydown',
+            'onkeypress',
+            'onkeyup',
+            'onmousedown',
+            'onmousemove',
+            'onmouseout',
+            'onmouseover',
+            'onmouseup',
+            'onmousewheel',
+            'onpaste',
+            'onselect',
+            'placeholder',
+            'rel',
+            'required',
+            'rows',
+            'rowspan',
+            'sandbox',
+            'scope',
+            'selected',
+            'shape',
+            'size',
+            'span',
+            'src',
+            'start',
+            'title',
+            'type',
+            'value',
             'width'
         ]
 
-        const addTagOptions = ['append', 'prepend']
-
-        const attributeOptions = ['id', 'href', 'type', 'class']
-
-        const styleItems = [
-            { id: 'margin', label: 'margin', value: '5px' },
-            { id: 'padding', label: 'padding', value: '2px' }
-        ]
-
+        // Az eszköztár bővíthetősége végett itt definiáltam annak részeit
+        // A gyermek elemek props-ként kerülnek átadásra
         const toolsSections = [
             {
                 key: 'fourthSection',
@@ -521,10 +586,13 @@ class App extends Component {
             }
         ]
 
+        // Komponens által kirajzolt felület megadása
+        // A főbb komponensek itt kerülnek megadásra
+        // Azok gyermek elemei pedig paraméterként kerülnek átadásra
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-8">
+            <div className="container-fluid d-flex h-100 flex-column">
+                <div className="row flex-grow-1 d-flex justify-content-start">
+                    <div className="col-9 h-100">
                         <DesignerInterface
                             header={
                                 <DesignerInterfaceHeader
@@ -537,7 +605,7 @@ class App extends Component {
                             preview={<Preview node={this.state.root} />}
                         />
                     </div>
-                    <div className="col-4 border border-dark">
+                    <div className="col-3 border border-dark no-gutters">
                         <Tools
                             toolsSections={toolsSections}
                             selectedNode={this.state.selectedNodeId}
