@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/front-end-builder-github-pages/precache-manifest.d287822edb4bedd1fc2e092b0f2a2cca.js"
+  "/front-end-builder/precache-manifest.7bf418d222c2a97e4a3d9f8b5d1e492a.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/front-end-builder-github-pages/index.html", {
+workbox.routing.registerNavigationRoute("/front-end-builder/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
