@@ -1,13 +1,13 @@
 {
-  "main.css": "/Andicstom.github.io/static/css/main.c22ff9d7.chunk.css",
-  "main.js": "/Andicstom.github.io/static/js/main.26418735.chunk.js",
-  "main.js.map": "/Andicstom.github.io/static/js/main.26418735.chunk.js.map",
-  "runtime~main.js": "/Andicstom.github.io/static/js/runtime~main.7527c627.js",
-  "runtime~main.js.map": "/Andicstom.github.io/static/js/runtime~main.7527c627.js.map",
-  "static/js/2.30d7af93.chunk.js": "/Andicstom.github.io/static/js/2.30d7af93.chunk.js",
-  "static/js/2.30d7af93.chunk.js.map": "/Andicstom.github.io/static/js/2.30d7af93.chunk.js.map",
-  "index.html": "/Andicstom.github.io/index.html",
-  "precache-manifest.5634b1c22e3a395eb2a7edd1d50cf0a2.js": "/Andicstom.github.io/precache-manifest.5634b1c22e3a395eb2a7edd1d50cf0a2.js",
-  "service-worker.js": "/Andicstom.github.io/service-worker.js",
-  "static/css/main.c22ff9d7.chunk.css.map": "/Andicstom.github.io/static/css/main.c22ff9d7.chunk.css.map"
+  "main.css": "/Andicstom/Andicstom.github.io/static/css/main.c22ff9d7.chunk.css",
+  "main.js": "/Andicstom/Andicstom.github.io/static/js/main.d979279e.chunk.js",
+  "main.js.map": "/Andicstom/Andicstom.github.io/static/js/main.d979279e.chunk.js.map",
+  "runtime~main.js": "/Andicstom/Andicstom.github.io/static/js/runtime~main.1c4f7554.js",
+  "runtime~main.js.map": "/Andicstom/Andicstom.github.io/static/js/runtime~main.1c4f7554.js.map",
+  "static/js/2.30d7af93.chunk.js": "/Andicstom/Andicstom.github.io/static/js/2.30d7af93.chunk.js",
+  "static/js/2.30d7af93.chunk.js.map": "/Andicstom/Andicstom.github.io/static/js/2.30d7af93.chunk.js.map",
+  "index.html": "/Andicstom/Andicstom.github.io/index.html",
+  "precache-manifest.c2a6a06843f5555a1688d7d78a5b9e5f.js": "/Andicstom/Andicstom.github.io/precache-manifest.c2a6a06843f5555a1688d7d78a5b9e5f.js",
+  "service-worker.js": "/Andicstom/Andicstom.github.io/service-worker.js",
+  "static/css/main.c22ff9d7.chunk.css.map": "/Andicstom/Andicstom.github.io/static/css/main.c22ff9d7.chunk.css.map"
 }
