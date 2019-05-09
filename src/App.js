@@ -7,6 +7,7 @@ import DesignerInterfaceHeader from './components/DesignerInterfaceHeader/Design
 import Preview from './components/Preview/Preview'
 import SelectElem from './components/SelectElem/SelectElem'
 import { saveAs } from 'file-saver';
+import idGenerator from 'react-id-generator';
 import ToolsSelectElemBox from './components/ToolsSelectElemBox/ToolsSelectElemBox'
 var TreeModel = require('tree-model')
 var FileSaver = require('file-saver');
@@ -37,17 +38,6 @@ class App extends Component {
         }
     }
 
-    componentWillMount() {
-        let bodyStyle = document.body.style
-        //document.html.style.height = '100%'
-        //bodyStyle.backgroundColor = 'green'
-        //bodyStyle.height = '100%'
-    }
-
-    componentWillUnmount() {
-        document.body.style.backgroundColor = null
-    }
-
     // Elem kiválasztása és ez alapján az alkalmazás állapotának frissítése
     selectElem = (e, node) => {
         if (!e) var e = window.event
@@ -59,7 +49,7 @@ class App extends Component {
     // Új elem hozzáadása az adatmodellhez
     addNewElem = (elemType, addType) => {
         let newNode = this.tree.parse({
-            id: 11111,
+            id:  idGenerator(),
             type: elemType,
             attributes: { id: 11111 },
             styles: {}
@@ -77,7 +67,7 @@ class App extends Component {
                     case 'append':
                         parentNode.addChild(newNode)
                         break
-                    case 'preppend':
+                    case 'prepend':
                         parentNode.addChildAtIndex(newNode, 0)
                         break
                     default:
@@ -174,19 +164,6 @@ class App extends Component {
         return {}
     }
 
-    downloadFile = (filename, text) => {
-        var element = document.createElement('a')
-        element.setAttribute(
-            'href',
-            'data:text/plain;charset=utf-8,' + encodeURIComponent(text)
-        )
-        element.setAttribute('download', filename)
-        element.style.display = 'none'
-        document.body.appendChild(element)
-        element.click()
-        document.body.removeChild(element)
-    }
-
     getHtmlFileText = node => {
         let children
         if (node.children != null) {
@@ -194,7 +171,6 @@ class App extends Component {
                 const { id, type, attributes, style } = node.model
                 return (
                     '<${type} ${...attributes} style=${style}>' +
-                    //'<' + type + ' ' + {...attributes} +  'style:' + style  +
                     this.getHtmlFileText(node) +
                     '<${type}>'
                 )
